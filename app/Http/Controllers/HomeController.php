@@ -23,10 +23,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    
     public function index()
     {
+
+        $tweets = Tweet::latest()->get();
+
         return view('home', [
-            'tweets' => Tweet::all()
+            'tweets' => auth()->user()->timeline()
         ]);
     }
 }
